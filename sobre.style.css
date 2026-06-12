@@ -1,0 +1,617 @@
+/* ==========================================================================
+   01. ESTILOS GLOBAIS E CONFIGURAÇÕES BASE
+   ========================================================================== */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#000;
+  color:#fff;
+}
+
+/* --- Cabeçalho e Menu de Navegação --- */
+header{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:15px 30px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(0,0,0,.4);
+  backdrop-filter:blur(8px);
+  border-bottom:1px solid rgba(255,255,255,.05);
+  z-index:1000;
+  transition:.4s ease;
+}
+
+header.scrolled {
+  background:rgba(0,0,0,.9);
+  padding:12px 30px;
+  border-bottom:1px solid rgba(138,43,226,.3);
+}
+
+.logo{
+  font-size:18px;
+  font-weight:bold;
+  letter-spacing:4px;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+
+nav{
+  display:flex;
+  align-items:center;
+  justify-content:flex-end;
+  gap:20px;
+  flex:1;
+  margin-left:30px;
+}
+
+nav a{
+  color:#fff;
+  text-decoration:none;
+  font-size:14px;
+  transition:.3s;
+  white-space:nowrap;
+}
+
+nav a:hover {
+  color:#a855f7;
+}
+
+/* --- Componentes Comuns --- */
+.botao{
+  display:inline-block;
+  padding:14px 30px;
+  background:#8a2be2;
+  color:#fff;
+  text-decoration:none;
+  border-radius:30px;
+  font-weight:bold;
+  transition:.3s ease;
+  border:none;
+  cursor:pointer;
+}
+
+.botao:hover{
+  transform:translateY(-5px);
+  background:#a855f7;
+  box-shadow:0 10px 20px rgba(138,43,226,.3);
+}
+
+section{
+  padding:90px 40px;
+}
+
+.section-title{
+  text-align:center;
+  font-size:40px;
+  margin-bottom:40px;
+  letter-spacing:2px;
+}
+
+.topo{
+  position:fixed;
+  bottom:20px;
+  right:20px;
+  width:50px;
+  height:50px;
+  background:#fff;
+  color:#000;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-decoration:none;
+  font-size:20px;
+  z-index:999;
+}
+
+footer{
+  text-align:center;
+  padding:45px;
+  background:#0a0a0a;
+  color:#999;
+  font-size:14px;
+  border-top:1px solid rgba(255,255,255,.03);
+}
+
+/* --- Animações de Scroll --- */
+.card, .music-card, .look-card{
+  opacity:0;
+  transform:translateY(40px);
+  transition:.7s ease;
+}
+
+.card.show, .music-card.show, .look-card.show{
+  opacity:1;
+  transform:translateY(0);
+}
+
+/* --- Efeito de Confetes Laranjas --- */
+.confetti {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: #ff7300;
+  opacity: 0.7;
+  border-radius: 2px;
+  animation: fall 3s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-10px) rotate(0deg); opacity: 0.7; }
+  100% { transform: translateY(250px) rotate(360deg); opacity: 0; }
+}
+
+/* ==========================================================================
+   02. HOME (SWIFTSTATION.HTML)
+   ========================================================================== */
+.hero{
+  height:100vh;
+  background: linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.75)), url('taylorswift.jpg') center/cover no-repeat;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding-top:80px;
+}
+
+.hero h1{
+  font-size:70px;
+  letter-spacing:8px;
+  margin-bottom:10px;
+}
+
+.hero p{
+  font-size:20px;
+  opacity:.9;
+  margin-bottom:20px;
+}
+
+.intro{
+  max-width:900px;
+  margin:auto;
+  text-align:center;
+}
+
+.intro p{
+  margin-bottom:15px;
+  color:#ccc;
+  line-height:1.7;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+
+.card{
+  background:#111;
+  border-radius:20px;
+  overflow:hidden;
+  transition:.4s ease;
+  border:1px solid rgba(255,255,255,.05);
+}
+
+.card:hover{
+  transform:translateY(-8px);
+  border-color:rgba(138,43,226,.4);
+}
+
+.card img{
+  width:100%;
+  height:250px;
+  object-fit:cover;
+}
+
+.info{
+  padding:20px;
+}
+
+.info h3{ margin-bottom:10px; }
+.info p{ color:#bbb; margin-bottom:15px; font-size:14px; }
+
+.news{
+  background:#0d0d0d;
+  text-align:center;
+  padding:100px 40px;
+}
+
+.news-box p{ color:#ccc; font-size:18px; line-height:1.8; }
+
+/* ==========================================================================
+   03. MÚSICA (MUSIC.HTML)
+   ========================================================================== */
+.music-hero{
+  height:55vh;
+  background: linear-gradient(rgba(0,0,0,.60),rgba(0,0,0,.82)), url('musicbg.jpg') center/cover no-repeat;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+  padding-top:80px;
+}
+
+.music-hero h1{ font-size:60px; letter-spacing:6px; margin-bottom:15px; }
+.music-hero p{ font-size:18px; color:#ddd; margin-bottom:25px; line-height:1.7; }
+
+.music-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:25px;
+  max-width:1400px;
+  margin:auto;
+}
+
+.music-card{
+  background:#111;
+  padding:35px 30px;
+  border-radius:22px;
+  text-align:center;
+  transition:.4s;
+  border:1px solid rgba(255,255,255,.08);
+}
+
+.music-card:hover{
+  transform:translateY(-8px);
+  background:#181818;
+  border-color:rgba(138,43,226,.4);
+}
+
+.music-card h3{ margin-bottom:15px; font-size:24px; color:#a855f7; letter-spacing:1px; }
+.music-card p{ color:#bbb; font-size:15px; margin-bottom:8px; }
+.music-card p:last-child { margin-bottom:0; }
+
+.videos-section{ padding:100px 40px; background:#050505; }
+.videos-track{ display:flex; gap:30px; overflow-x:auto; padding-bottom:20px; scroll-behavior:smooth; }
+.videos-track::-webkit-scrollbar{ height:8px; }
+.videos-track::-webkit-scrollbar-thumb{ background:#8a2be2; border-radius:30px; }
+
+.video-poster{
+  position:relative;
+  min-width:420px;
+  height:560px;
+  overflow:hidden;
+  border-radius:30px;
+  text-decoration:none;
+  flex-shrink:0;
+  border:1px solid rgba(255,255,255,.05);
+}
+
+.video-poster img{ width:100%; height:100%; object-fit:cover; transition:.8s; }
+.video-poster:hover img{ transform:scale(1.08); }
+
+.video-overlay{
+  position:absolute;
+  inset:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:35px;
+  background: linear-gradient(to top, rgba(0,0,0,.95), rgba(0,0,0,.4), transparent);
+}
+
+.video-overlay span{ font-size:12px; letter-spacing:4px; color:#ddd; margin-bottom:10px; }
+.video-overlay h3{ font-size:32px; line-height:1.2; color:#fff; }
+
+/* ==========================================================================
+   04. GALERIA (GALLERY.HTML) + LIGHTBOX
+   ========================================================================== */
+.gallery-hero{
+  height:55vh;
+  background: linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.80)), url('gallerybg.jpg') center/cover no-repeat;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+  padding-top:80px;
+}
+
+.gallery-hero h1{ font-size:60px; letter-spacing:6px; margin-bottom:15px; }
+.gallery-hero p{ font-size:18px; color:#ddd; max-width:700px; line-height:1.7; }
+
+.looks-section{ padding:100px 40px; background:#000; }
+.looks-section:nth-of-type(even) { background:#0d0d0d; }
+.looks-text{ text-align:center; color:#bbb; max-width:850px; margin:0 auto 60px; font-size:18px; line-height:1.8; }
+
+.looks-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+  max-width:1400px;
+  margin:auto;
+}
+
+.look-card{
+  position:relative;
+  height:360px;
+  border-radius:24px;
+  overflow:hidden;
+  background:#111;
+  cursor:pointer;
+  transition:.4s ease;
+  border:1px solid rgba(255,255,255,.06);
+}
+
+.look-card:hover{
+  transform:translateY(-10px);
+  border-color:rgba(138,43,226,.6);
+  box-shadow:0 15px 30px rgba(138,43,226,.15);
+}
+
+.look-card img{ width:100%; height:100%; object-fit:cover; transition:.6s ease; }
+.look-card:hover img{ transform:scale(1.06); }
+
+.overlay{
+  position:absolute;
+  inset:0;
+  background: linear-gradient(to top, rgba(0,0,0,.92), rgba(0,0,0,.35), transparent);
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+  padding:28px;
+}
+
+.overlay h3{ font-size:24px; margin-bottom:8px; }
+.overlay span{ font-size:12px; letter-spacing:4px; color:#a855f7; }
+
+#lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(8px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+  padding: 20px;
+}
+
+#lightbox.active { opacity: 1; pointer-events: all; }
+
+#lightbox-img {
+  max-width: 90%;
+  max-height: 75vh;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(138, 43, 226, 0.25);
+  transform: scale(0.9);
+  transition: transform 0.4s ease;
+  object-fit: contain;
+}
+
+#lightbox.active #lightbox-img { transform: scale(1); }
+
+#lightbox-close {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  font-size: 45px;
+  color: #fff;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+#lightbox-close:hover { color: #a855f7; transform: scale(1.1); }
+#lightbox-caption { margin-top: 20px; color: #fff; font-size: 20px; font-weight: bold; letter-spacing: 1px; text-align: center; }
+
+/* ==========================================================================
+   05. BIOGRAFIA (TAYLOR.HTML)
+   ========================================================================== */
+.taylor-hero{
+  height:55vh;
+  background: linear-gradient(rgba(0,0,0,.55),rgba(0,0,0,.80)), url('taylor3bg.jpg') center/cover no-repeat;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  padding:20px;
+  padding-top:80px;
+}
+
+.bio-section{ padding:100px 40px; background:#000; }
+
+.bio-grid{
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  gap:60px;
+  max-width:1400px;
+  margin:auto;
+  align-items:start;
+}
+
+.bio-image{ position:sticky; top:120px; }
+.bio-image img{ width:100%; height:700px; object-fit:cover; border-radius:28px; border:1px solid rgba(255,255,255,.05); }
+.bio-text p{ color:#ccc; font-size:17px; line-height:2; margin-bottom:28px; }
+.bio-text p:last-child { margin-bottom:0; }
+
+.era-filters { display: flex; gap: 12px; justify-content: center; margin-bottom: 40px; overflow-x: auto; padding: 10px 20px; width: 100%; }
+.era-filters::-webkit-scrollbar { display: none; }
+
+.filter-btn {
+  background: #111;
+  color: #aaa;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 10px 20px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+  transition: .3s ease;
+}
+
+.filter-btn:hover, .filter-btn.active {
+  background: #8a2be2;
+  color: #fff;
+  border-color: #a855f7;
+  box-shadow: 0 5px 15px rgba(138, 43, 226, 0.3);
+}
+
+.bio-paragraph { transition: opacity 0.4s ease, transform 0.4s ease; display: block; }
+.bio-paragraph.hide { display: none; }
+
+/* ==========================================================================
+   06. CONTATO (CONTATO.HTML)
+   ========================================================================== */
+.contact-hero {
+  height: 50vh;
+  background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.9)), url('contactbg.jpg') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 80px;
+}
+
+.contact-hero h1 { font-size: 60px; letter-spacing: 6px; margin-bottom: 15px; }
+.contact-hero p { font-size: 18px; color: #ddd; }
+.contact-section { padding: 80px 20px; background: #000; display: flex; flex-direction: column; align-items: center; }
+
+.contact-form {
+  width: 100%;
+  max-width: 650px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  background: #0a0a0a;
+  padding: 40px;
+  border-radius: 24px;
+  border: 1px solid rgba(255,255,255,.04);
+}
+
+.form-group-row { display: flex; gap: 20px; }
+.input-container { display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.input-container label { font-size: 14px; color: #aaa; font-weight: 600; }
+
+.contact-form input, .contact-form textarea {
+  width: 100%;
+  padding: 16px 20px;
+  background: #141414;
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 12px;
+  color: #fff;
+  font-size: 16px;
+  font-family: inherit;
+  transition: .3s ease;
+}
+
+.contact-form input:focus, .contact-form textarea:focus {
+  outline: none;
+  border-color: #a855f7;
+  background: #181818;
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.2);
+}
+
+.contact-form textarea { height: 150px; resize: vertical; }
+.contact-form .botao { align-self: center; margin-top: 10px; width: 100%; text-align: center; }
+#status { margin-top: 25px; font-size: 18px; color: #a855f7; font-weight: bold; text-align: center; min-height: 27px; }
+
+/* ==========================================================================
+   07. LOJA (STORE.HTML)
+   ========================================================================== */
+.store-hero {
+  height: 50vh;
+  background: linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.9)), url('storebg.jpg') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 80px;
+}
+
+.store-container { padding: 60px 40px; background: #000; max-width: 1400px; margin: 0 auto; }
+.store-layout { display: flex; gap: 40px; align-items: start; }
+.products-grid { flex: 2.3; display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 25px; }
+
+.product-card {
+  background: #0a0a0a;
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+  border: 1px solid rgba(255,255,255,.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: .3s ease;
+}
+
+.product-card:hover { border-color: rgba(138,43,226,.4); transform: translateY(-5px); }
+.product-img-container { width: 100%; height: 200px; background: #141414; border-radius: 14px; margin-bottom: 15px; overflow: hidden; }
+.product-img-container img { width: 100%; height: 100%; object-fit: cover; }
+.product-card h3 { font-size: 18px; margin-bottom: 8px; color: #fff; }
+.product-card .price { color: #a855f7; font-weight: bold; font-size: 18px; margin-bottom: 15px; }
+.product-card .botao { width: 100%; padding: 10px 20px; font-size: 14px; }
+
+.cart-sidebar { flex: 1; background: #0a0a0a; padding: 30px; border-radius: 24px; border: 1px solid rgba(255,255,255,.04); position: sticky; top: 100px; }
+.cart-sidebar h3 { border-bottom: 1px solid rgba(255,255,255,.1); padding-bottom: 12px; margin-bottom: 15px; }
+#cart-items { list-style: none; padding: 0; max-height: 300px; overflow-y: auto; }
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 14px;
+  margin-bottom: 12px;
+  color: #ccc;
+  border-bottom: 1px solid rgba(255,255,255,.02);
+  padding-bottom: 6px;
+  cursor: pointer;
+  transition: .2s;
+}
+
+.cart-item:hover { color: #ef4444; border-bottom-color: rgba(239, 68, 68, 0.2); }
+.empty-cart { color: #666 !important; font-style: italic; }
+.cart-total { border-top: 1px solid rgba(255,255,255,.1); padding-top: 15px; margin-top: 15px; font-size: 18px; font-weight: bold; display: flex; justify-content: space-between; }
+#total-val { color: #a855f7; }
+
+/* ==========================================================================
+   08. RESPONSIVIDADE GLOBAL (MEDIA QUERIES)
+   ========================================================================== */
+@media(max-width:950px){
+  .store-layout { flex-direction: column; }
+  .cart-sidebar { width: 100%; position: relative; top: 0; }
+}
+
+@media(max-width:900px){
+  header{ flex-direction:column; gap:15px; padding:20px; }
+  header.scrolled { padding:15px 20px; }
+  nav{ flex-wrap:wrap; justify-content:center; gap:15px; margin-left:0; }
+  
+  .hero h1, .music-hero h1, .gallery-hero h1, .taylor-hero h1, .contact-hero h1, .store-hero h1 { font-size:38px; letter-spacing:3px; }
+  .hero p, .music-hero p, .gallery-hero p, .taylor-hero p, .contact-hero p, .store-hero p { font-size:15px; }
+  
+  .music-grid, .looks-grid, .bio-grid, .grid{ grid-template-columns:1fr; }
+  .bio-image{ position:relative; top:0; }
+  .bio-image img{ height:450px; }
+  
+  .looks-section, .bio-section, .news, section, .contact-section, .store-container{ padding:70px 20px; }
+  .section-title{ font-size:32px; }
+  .bio-text p, .looks-text, .news-box p{ font-size:16px; line-height:1.9; }
+  
+  .look-card{ height:300px; }
+  .video-poster{ min-width:280px; height:420px; }
+  .video-overlay h3{ font-size:24px; }
+}
+
+@media(max-width: 600px){
+  .form-group-row { flex-direction: column; gap: 24px; }
+  .contact-form { padding: 25px 20px; }
+}
